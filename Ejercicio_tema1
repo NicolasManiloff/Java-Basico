@@ -1,0 +1,16 @@
+public class Main {
+    public static void main(String[] args) {
+        int numero = 5;
+        long numero_grande = 94832114;
+        double decimal = 6.8d;
+        boolean logico = 7>3;
+        String frase = "Esto es una frase largaa";
+
+
+        System.out.println("Esto es un int" + numero);
+        System.out.println("Esto es un long" + numero_grande);
+        System.out.println("Esto es un double" + decimal);
+        System.out.println("Esto es un boolean" + logico);
+        System.out.println("Esto es una clase String" + frase);
+    }
+}
