@@ -1,0 +1,4 @@
+public double precio_con_iva(double valor){
+        System.out.println("El precio total es: " + valor * 1.21);
+        return  valor * 1.21;
+}
