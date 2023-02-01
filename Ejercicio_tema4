@@ -1,0 +1,63 @@
+package poo.clases;
+
+public class SmartDevice {
+
+    public static void main(String[] args) {
+
+        SmartDevice celular = new SmartPhone("LG", "Negro", 5, 2500);
+        System.out.println(celular);
+
+        SmartDevice reloj = new SmartWatch("Xiaomi", "Azul", 2, 1000);
+        System.out.println(reloj);
+    }
+
+    protected String fabricante, color;
+    protected int memoria, bateria;
+
+    public SmartDevice (){
+
+    }
+
+    public SmartDevice(String fabricante, String color, int memoria, int bateria) {
+        this.fabricante = fabricante;
+        this.color = color;
+        this.memoria = memoria;
+        this.bateria = bateria;
+    }
+
+    static class SmartPhone extends SmartDevice {
+
+        public SmartPhone(String fabricante, String color, int memoria, int bateria) {
+            super(fabricante, color , memoria , bateria );
+        }
+
+        @Override
+        public String toString() {
+            return "SmartPhone{" +
+                    "fabricante='" + fabricante + '\'' +
+                    ", color='" + color + '\'' +
+                    ", memoria=" + memoria +
+                    ", bateria=" + bateria +
+                    '}';
+        }
+    }
+
+    static class SmartWatch extends SmartDevice {
+
+        public SmartWatch(String fabricante, String color, int memoria, int bateria) {
+            super(fabricante, color , memoria, bateria);
+        }
+
+        @Override
+        public String toString() {
+            return "SmartWatch{" +
+                    "fabricante='" + fabricante + '\'' +
+                    ", color='" + color + '\'' +
+                    ", memoria=" + memoria +
+                    ", bateria=" + bateria +
+                    '}';
+        }
+    }
+
+
+}
