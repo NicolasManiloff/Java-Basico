@@ -1,0 +1,41 @@
+public class Main {
+    public static void main(String[] args) {
+        
+        CocheCRUD cocheCRUD = new CocheCRUDImpl();
+        
+        cocheCRUD.save();
+        cocheCRUD.findAll();
+        cocheCRUD.delete();
+        
+        
+    }
+}
+
+// -----Interface-----
+
+public interface CocheCRUD {
+
+    void save();
+    void findAll();
+    void delete();
+
+}
+
+// -----Implementación-----
+
+public class CocheCRUDImpl implements CocheCRUD{
+    @Override
+    public void save() {
+        System.out.println("Save");
+    }
+
+    @Override
+    public void findAll() {
+        System.out.println("FindAll");
+    }
+
+    @Override
+    public void delete() {
+        System.out.println("Delete");
+    }
+}
