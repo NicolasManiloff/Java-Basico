@@ -1,0 +1,258 @@
+import java.io.*;
+import java.util.*;
+
+public class tema789 {
+
+      public static void main(String[] args) {
+
+        String cad =cadenaInv("hola mundo");
+        System.out.println(cad);
+
+        // ----------------1----------------
+
+        String[] uni =new String[2];
+
+        uni[0] = "perro";
+        uni[1] = "pajaro";
+
+        verArrayUni(uni);
+
+        // -----------------2-----------------
+
+        int [][] bi = new int[3][4];
+
+        verArrayBi(bi);
+
+        // ------------------3-----------------
+
+        Vector<String> vector= new Vector<>(5);
+        verVector(vector);
+
+        //--------------------4-----------------
+
+// El metodo que tiene un vector para agregar capacidad una vez lleno, puede
+// llegar a saturar el procesamiento porque se duplica cada vez que se quiera
+// expandir su tamaño
+
+        //--------------------5------------------
+
+        ArrayList<String> list = new ArrayList<>(4);
+
+        copiarArrays(list);
+
+        //-------------------6-------------------
+
+        numerosImpares();
+
+        //-------------------7--------------------
+
+        try {
+            dividePorCero(7,0);
+            } catch (Exception e){
+                System.out.println("Esto no puede hacerse");
+                throw  new ArithmeticException();
+            } finally {
+                System.out.println("Demo de código");
+        }
+
+        //-------------------8--------------------
+
+          try {
+              InputStream fileIn = new FileInputStream("/etc/passwd");
+              PrintStream fileOut = new PrintStream("destino.txt");
+
+              copiaFichero(fileIn,fileOut);
+              System.out.println(fileOut);
+
+          }catch (Exception e ){
+              System.out.println("Excepcion: " + e.getMessage());
+          }
+
+          //------------------9---------------------
+
+          aprobados();
+
+
+    }
+
+    // Escribe el código que devuelva una cadena al revés.
+    // Por ejemplo, la cadena "hola mundo", debe retornar "odnum aloh".
+
+    public static String cadenaInv(String cadena){
+        String invertido = "";
+        for(int i = cadena.length()-1 ; i !=-1; i--){
+            invertido += cadena.charAt(i);
+        }
+        return invertido;
+    }
+
+//      1) Crea un array unidimensional de Strings y recórrelo,
+//     mostrando únicamente sus valores.
+    public static void verArrayUni(String[] arr){
+
+        for (String i : arr){
+            System.out.println(i);
+        }
+    }
+
+    // 2) Crea un array bidimensional de enteros y recórrelo,
+    // mostrando la posición y el valor de cada elemento en ambas dimensiones.
+
+    public static void verArrayBi(int [][] arrayBi){
+        for (int i = 0; i<arrayBi.length;i++){
+            for (int j = 0; j<arrayBi[i].length; j++){
+                arrayBi [i][j] = (int) (Math.random()*100);
+            }
+        }
+
+        for (int i = 0; i< arrayBi.length; i++){
+
+            for (int j = 0; j < arrayBi[i].length ;j++){
+                System.out.println("Posicion [" + i + "] [" + j + "] = " + arrayBi[i][j]);
+            }
+
+        }
+    }
+
+    // 3) Crea un "Vector" del tipo de dato que prefieras, y añádele 5 elementos.
+    // Elimina el 2o y 3er elemento y muestra el resultado final.
+
+    public static void verVector(Vector<String> vector){
+        vector.add("Elemento1");
+        vector.add("Elemento2");
+        vector.add("Elemento3");
+        vector.add("Elemento4");
+        vector.add("Elemento5");
+
+        vector.remove("Elemento2");
+        vector.remove("Elemento3");
+
+        for (String i : vector){
+            System.out.println(i);
+        }
+    }
+
+    // 5) Crea un ArrayList de tipo String, con 4 elementos. Cópialo en una LinkedList.
+    // Recorre ambos mostrando únicamente el valor de cada elemento
+
+    public static void copiarArrays(ArrayList<String> list){
+        list.add("valor1");
+        list.add("valor2");
+        list.add("valor3");
+        list.add("valor4");
+
+        LinkedList<String> nuevaLista = new LinkedList<>();
+
+        System.out.println("Valores en ArrayList");
+        for (Object i : list){
+            System.out.println(i);
+            nuevaLista.add((String)i);
+        }
+
+        System.out.println("Valores en LinkedList");
+        for (String i : nuevaLista){
+            System.out.println(i);
+        }
+
+
+    }
+
+    // 6) Crea un ArrayList de tipo int, y, utilizando un bucle rellénalo con elementos 1..10.
+    // A continuación, con otro bucle, recórrelo y elimina los numeros pares. Por último, vuelve a recorrerlo y muestra el ArrayList final.
+    // Si te atreves, puedes hacerlo en menos pasos, siempre y cuando cumplas el primer "for" de relleno.
+
+    public static void numerosImpares(){
+        ArrayList<Integer> list = new ArrayList<>(10);
+
+        for(int i=1; i!=11 ; i++){
+            list.add(i);
+        }
+
+        int contador = 0;
+        for (int i = 1; i < 11; i++ ){
+
+            if( i % 2 == 0){
+               list.remove(contador);
+               contador--;
+            }
+            contador++;
+        }
+
+        for (int i:list){
+            System.out.println(i);
+        }
+    }
+
+    // 7) Crea una función DividePorCero. Esta, debe generar una excepción ("throws") a su llamante del tipo ArithmeticException
+    // que será capturada por su llamante (desde "main", por ejemplo). Si se dispara la excepción, mostraremos el mensaje
+    // "Esto no puede hacerse". Finalmente, mostraremos en cualquier caso: "Demo de código".
+
+    public static void dividePorCero(int a, int b) throws ArithmeticException{
+        int resultado = 0;
+
+        resultado = a/b;
+
+    }
+
+    // 8) Utilizando InputStream y PrintStream, crea una función que reciba dos parámetros: "fileIn" y "fileOut".
+    // La tarea de la función será realizar la copia del fichero dado en el parámetro "fileIn" al fichero dado en "fileOut".
+
+    public static void copiaFichero(InputStream fileIn, PrintStream fileOut)throws IOException{
+
+            byte []datos = fileIn.readAllBytes();
+
+            fileOut.write(datos);
+
+            fileIn.close();
+            fileOut.close();
+    }
+
+    // 9) Sorpréndenos creando un programa de tu elección que utilice InputStream,
+    // PrintStream, excepciones, un HashMap y un ArrayList, LinkedList o array.
+
+    public static void aprobados(){
+
+        Map<String,Integer> alumnos = new HashMap();
+        ArrayList<String> good = new ArrayList<>();
+        Scanner x = new Scanner(System.in);
+        
+        int nota,contador=1,cantidad=0;
+        String nombre;
+        
+        do {
+            try {
+                
+                if (cantidad==0){
+                    System.out.println("Ingrese la cantidad de alumnos que desea agregar: ");
+                    cantidad=x.nextInt();
+                }
+                
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Nombre del alumno: " + contador);
+                nombre = scanner.next();
+
+                System.out.println("Nota: ");
+                nota = scanner.nextInt();
+                alumnos.put(nombre,nota);
+
+                if (nota>5){
+                    good.add(nombre);
+                }
+                scanner.close();
+            }catch (Exception e){
+                System.out.println("Error al ingresar los datos, por favor ingrese una nota valida " );
+                contador--;
+            }
+            contador++;
+            
+        }while (contador<6);
+        
+        x.close();
+        
+        System.out.println("Los siguientes alumnos fueron aprobados");
+
+        for (String i:good){
+            System.out.println(i);
+        }
+    }
+}
